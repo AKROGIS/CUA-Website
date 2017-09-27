@@ -83,7 +83,7 @@
 			// display services in table on page	
 			function showTable(serviceTypeCode) {	
 				var uniqueServices = []; // tracks which service names are added to prevent duplicate entries
-				$('#tblServices tbody').html(""); // clear table
+				$('#tblServices tbody').empty(); // clear table
 				$.each(services, function(i, service){					
 					// get service attributes
 					var serviceName = ""; // service name	
@@ -116,7 +116,7 @@
 				});
 										
 				// if table is empty after looping through data (shouldn't happen...), display "no records match the search criteria"
-				if($('#tblServices tbody').html() == ""){
+				if($('#tblServices tbody').is(':empty')){
 					$('#tblServices tbody').html('<tr><td>No records match the search criteria.</td></tr>');
 				} // end if
 				
