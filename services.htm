@@ -72,8 +72,9 @@
 			
 			// handles drop down list's change event (filter services based on criteria)
 			$('#serviceSelector').change(function() {
-				var selectedItem = $('#serviceSelector option:selected').text(); // selected service type name
-				var selectedValue = $('#serviceSelector option:selected').val(); // selected service type code
+				var selected = $('#serviceSelector').find('option:selected');  // cache the results of the jquery search
+				var selectedItem = selected.text(); // selected service type name
+				var selectedValue = selected.val(); // selected service type code
 								
 				$('.sType').html(selectedItem); // display search criteria above table					
 				showTable(selectedValue); // display services that match criteria
@@ -83,7 +84,8 @@
 			// display services in table on page	
 			function showTable(serviceTypeCode) {	
 				var uniqueServices = []; // tracks which service names are added to prevent duplicate entries
-				$('#tblServices tbody').empty(); // clear table
+				var tableBody = $('#tblServices').find('tbody');  // cache the results of the jquery search
+				tableBody.empty(); // clear table
 				$.each(services, function(i, service){					
 					// get service attributes
 					var serviceName = ""; // service name	
@@ -116,8 +118,8 @@
 				});
 										
 				// if table is empty after looping through data (shouldn't happen...), display "no records match the search criteria"
-				if($('#tblServices tbody').is(':empty')){
-					$('#tblServices tbody').html('<tr><td>No records match the search criteria.</td></tr>');
+				if(tableBody.is(':empty')){
+					tableBody.html('<tr><td>No records match the search criteria.</td></tr>');
 				} // end if
 				
 			} // end method showTable	
