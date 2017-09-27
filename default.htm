@@ -3,21 +3,6 @@
 <head>
 	<title>Directory of Commercial Visitor Service Providers</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<script
-			src="https://code.jquery.com/jquery-3.2.1.min.js"
-			integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-			crossorigin="anonymous">
-	</script>
-	<script>
-		$(document).ready(function(){
-			// on selection of park, redirect to services page with query string in url
-			$('#parkSelector').change(function(){
-				if ($(this).val() !== "null"){ // ensure park unit is selected
-					window.location = "services.htm?park=" + $(this).val(); // redirect
-				}
-			});
-		});
-	</script>
 </head>
 <body>
 	<h1>Directory of Commercial Visitor Service Providers</h1>
@@ -79,5 +64,10 @@
 	<br/><br/>
 	The National Park Service maintains a <a href="https://concessions.nps.gov/authorized_concessions.htm">List of Current Concession Contract Holders</a> for all Regions.
 </p>
+<script>
+    document.getElementById('parkSelector').onchange = function() {
+        window.location = "services.htm?park=" + this.options[this.selectedIndex].value; // redirect
+    };
+</script>
 </body>
 </html>
