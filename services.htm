@@ -87,7 +87,7 @@
 				$.each(services, function(i, service){					
 					// get service attributes
 					var serviceName = ""; // service name	
-					if(service.website != ""){
+					if(service.website !== ""){
 							serviceName = '<a href="http://' + service.website +
 								'" target="_blank">' + service.name + '</a>'; // show service name with link to site
 					} else { 

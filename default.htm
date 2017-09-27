@@ -12,7 +12,7 @@
 		$(document).ready(function(){
 			// on selection of park, redirect to services page with query string in url
 			$('#parkSelector').change(function(){
-				if ($(this).val() != "null"){ // ensure park unit is selected	
+				if ($(this).val() !== "null"){ // ensure park unit is selected
 					var url = "services.htm?park=" + $(this).val(); // set url plus query string
 					window.location = url; // redirect					
 				}
