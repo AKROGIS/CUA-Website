@@ -1,0 +1,218 @@
+[
+  {
+    "code": "ARR",
+    "type": "Alsek River Rafting Guides"
+  }, 
+  {
+    "code": "AT",
+    "type": "Air Taxi Service"
+  },
+  {
+    "code": "BP",
+    "type": "Backpacking/Camping Overnight"
+  },
+  {
+    "code": "BR",
+    "type": "Boat Rental (Non-Motorized)"
+  },
+  {
+    "code": "BS",
+    "type": "Boat Storage"
+  },
+  {
+    "code": "BT",
+    "type": "Boating Trips"
+  },
+  {
+    "code": "BV",
+    "type": "Bear Viewing"
+  },
+  {
+    "code": "CB",
+    "type": "Charter Boat Service"
+  },
+  {
+    "code": "CO",
+    "type": "Other Course"
+  },
+  {
+    "code": "CS",
+    "type": "Cruise Ship Service"
+  },
+  {
+    "code": "CVN",
+    "type": "Sale of Visitor Convenience Items"
+  },
+  {
+    "code": "CY",
+    "type": "Bicycle Tours"
+  },
+  {
+    "code": "DS",
+    "type": "Dog Sledding"
+  },
+  {
+    "code": "DSF",
+    "type": "Dog Sled Freight Service"
+  },
+  {
+    "code": "DSP",
+    "type": "Dog Sled Passenger Service"
+  },
+  {
+    "code": "FD",
+    "type": "Fuel Sales - In-Park"
+  },
+  {
+    "code": "FS",
+    "type": "Passenger Ferry Service"
+  },
+  {
+    "code": "GC",
+    "type": "Group Camping"
+  },
+  {
+    "code": "GH",
+    "type": "Hiking/Walking Tours"
+  },
+  {
+    "code": "GHB",
+    "type": "Day Hiking - Backcountry Trips"
+  },
+  {
+    "code": "GHD",
+    "type": "Day Hiking"
+  },
+  {
+    "code": "GHO",
+    "type": "Overnight Hiking"
+  },
+  {
+    "code": "GL",
+    "type": "Glacier Landings"
+  },
+  {
+    "code": "HP",
+    "type": "Horse Packing Service"
+  },
+  {
+    "code": "HR",
+    "type": "Horse Riding Service"
+  },
+  {
+    "code": "HT",
+    "type": "Big Game Transport Service"
+  },
+  {
+    "code": "IP",
+    "type": "In-Park Operations"
+  },
+  {
+    "code": "IT",
+    "type": "Incidental Hunt Transport"
+  },
+  {
+    "code": "KT",
+    "type": "Kayak Tours"
+  },
+  {
+    "code": "KTO",
+    "type": "Sea Kayaking Guides (Overnight)"
+  },
+  {
+    "code": "KTR",
+    "type": "Sea Kayak Rental Service"
+  },
+  {
+    "code": "LF",
+    "type": "Lodging and Food Service"
+  },
+  {
+    "code": "MILL",
+    "type": "Kennecott Mill Tours"
+  },
+  {
+    "code": "MT",
+    "type": "Mountaineering"
+  },
+  {
+    "code": "OS",
+    "type": "Outdoor Skills Course"
+  },
+  {
+    "code": "PB",
+    "type": "Paddleboarding"
+  },
+  {
+    "code": "PH",
+    "type": "Photography"
+  },
+  {
+    "code": "SC",
+    "type": "Snowcoach Transportation"
+  },
+  {
+    "code": "SF",
+    "type": "Sportfishing"
+  },
+  {
+    "code": "SFB",
+    "type": "Sportfishing and Associated Boat Storage"
+  },
+  {
+    "code": "SH",
+    "type": "Shuttle and Taxi Service"
+  },
+  {
+    "code": "SHT",
+    "type": "Sport Hunting Guides/Outfitters"
+  },
+  {
+    "code": "SK",
+    "type": "Skiing"
+  },
+  {
+    "code": "SKO",
+    "type": "Dog Sled Supported Ski Trips (Overnight)"
+  },
+  {
+    "code": "SM",
+    "type": "Snowmachine Tours"
+  },
+  {
+    "code": "SN",
+    "type": "Snowshoeing"
+  },
+  {
+    "code": "SNK",
+    "type": "Snorkeling"
+  },
+  {
+    "code": "TB",
+    "type": "Tour Boat Operators"
+  },
+  {
+    "code": "VT",
+    "type": "Vehicle Tours"
+  },
+  {
+    "code": "WA",
+    "type": "Winter Activity (Skiing, Snowshoeing)"
+  },
+  {
+    "code": "WA-VT",
+    "type": "Road-Based Winter Vehicle Tours"
+  },
+  {
+    "code": "WPH",
+    "type": "Underwater Wildlife Photography"
+  },
+  {
+    "code": "WR",
+    "type": "Wagon Rides"
+  },
+  {
+    "code": "WT",
+    "type": "Water Taxi"
+  }
+]

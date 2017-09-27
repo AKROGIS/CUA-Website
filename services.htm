@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Directory of Commercial Visitor Service Providers</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>	
+	<script>
+		$(document).ready(function(){
+			var url = window.location.href; // get page url (includes query string)
+			var parkCode = url.substr(url.length - 4); // get park code from query string
+			var parkName = ""; // get full park name based on park code
+			switch (parkCode){
+				case 'alag': parkName = "Alagnak Wild River"; break;
+				case 'ania': parkName = "Aniakchak National Monument and Preserve"; break;
+				case 'bela': parkName = "Bering Land Bridge National Preserve"; break;
+				case 'cakr': parkName = "Cape Krusenstern National Monument"; break;
+				case 'dena': parkName = "Denali National Park and Preserve"; break;
+				case 'gaar': parkName = "Gates of the Arctic National Park and Preserve"; break;
+				case 'glba': parkName = "Glacier Bay National Park and Preserve"; break;
+				case 'katm': parkName = "Katmai National Park and Preserve"; break;
+				case 'kefj': parkName = "Kenai Fjords National Park"; break;
+				case 'klgo': parkName = "Klondike Gold Rush National Historical Park"; break;
+				case 'kova': parkName = "Kobuk Valley National Park"; break;
+				case 'lacl': parkName = "Lake Clark National Park and Preserve"; break;
+				case 'noat': parkName = "Noatak National Preserve"; break;
+				case 'sitk': parkName = "Sitka National Historical Park"; break;
+				case 'wrst': parkName = "Wrangell-St. Elias National Park and Preserve"; break;
+				case 'yuch': parkName = "Yukon-Charley Rivers National Preserve"; break;					
+			} // end switch
+			
+			// based on park code... 
+			// ...1) display park name in page heading (h2) and page description (span),
+			// ...2) set page image,
+			// ...3) and set json file name
+			$('.fullParkName').html(parkName); 
+			$('#parkImage').attr("src","images/" + parkCode + ".jpg");
+			var fileName = "data/" + parkCode + "-services.json";
+			
+			// from park json file and services json file...
+			// ...1) create/display array that stores park services as objects, 
+			// ...2) and create/display array that stores services specific to park
+			var services = []; 
+			$.getJSON(fileName, function (data){				
+				var serviceCodes = [];
+				$.each (data, function (i, service){
+					services.push({id:i, code:service.activity_code, name:service.cua_business_name, website:service.Web_site, 
+								   phone:service.contact_day_phone_num, email:service.contact_email_address,
+								   state:service.contact_state, city:service.contact_city});
+					serviceCodes.push(service.activity_code);
+		  		});	// end each	
+				
+				$('.sType').html('All Services'); // display 'All Services' above table	
+				showTable('all'); // display ALL services in table
+				
+				var serviceTypes = [];
+				$.getJSON("data/service-types.json", function (data){
+					$.each (data, function (i, serviceType){
+						// only include service types available for park
+						if($.inArray(serviceType.code, serviceCodes) !== -1){
+							serviceTypes.push('<option value="' +  serviceType.code + '">' + serviceType.type + '</option>');
+						}
+					});	// end each	
+					
+					$('#serviceSelector').append(serviceTypes.join("")); // display service types available for park in drop down list					
+				}); // end getJSON for drop down list population	
+				
+			});	// end getJSON for park services					
+			
+			// handles drop down list's change event (filter services based on criteria)
+			$('#serviceSelector').change(function() {
+				var selectedItem = $('#serviceSelector option:selected').text(); // selected service type name
+				var selectedValue = $('#serviceSelector option:selected').val(); // selected service type code
+								
+				$('.sType').html(selectedItem); // display search criteria above table					
+				showTable(selectedValue); // display services that match criteria
+				
+			});	// end change event for drop down list 
+			
+			// display services in table on page	
+			function showTable(serviceTypeCode) {	
+				var uniqueServices = []; // tracks which service names are added to prevent duplicate entries
+				$('#tblServices tbody').html(""); // clear table
+				$.each(services, function(i, service){					
+					// get service attributes
+					var serviceName = ""; // service name	
+					if(service.website != ""){
+							serviceName = '<a href="http://' + service.website +
+								'" target="_blank">' + service.name + '</a>'; // show service name with link to site
+					} else { 
+							serviceName = service.name; // no website, show service name only
+					}
+					var serviceLocation = service.city + ', ' + service.state; // service location (as city, state)
+					var servicePhone = service.phone; // UNFORMATTED phone number
+					var serviceFPhone = servicePhone.substr(0,3) + '-' + servicePhone.substr(3,3) +
+						'-' + servicePhone.substr(6,4); // FORMATTED phone number
+					var serviceEmail = service.email; // RAW email address (from database: email@site#mailto:email@site#)
+					var serviceFEmail = serviceEmail.substr(0,serviceEmail.indexOf('#')); // FORMATTED email address 
+					var serviceLEmail = '<a href="mailto:' + serviceFEmail + '">' + serviceFEmail + '</a>'; // email address WITH MAILTO link
+					
+					// IF service code matches selected criteria OR if "All Services" is selected 
+					// AND the service isn't already listed, display service 
+					if((serviceTypeCode === service.code || serviceTypeCode === "all") &&
+					   $.inArray(serviceName, uniqueServices) === -1){								
+							uniqueServices.push(serviceName); // log name in array (to use for duplicate-checking)  	
+							// build table row for display
+							var serviceDetail = '<tr><td><strong>' + serviceName + '</strong><br/>Office Location: ' + 
+								serviceLocation + '<br/>Phone Number: ' + serviceFPhone + '<br/>' + 
+								serviceLEmail + '</td></tr>';
+							// append table row to page
+							$('#tblServices').find('tbody:last').append(serviceDetail);		
+					} 
+				});
+										
+				// if table is empty after looping through data (shouldn't happen...), display "no records match the search criteria"
+				if($('#tblServices tbody').html() == ""){
+					$('#tblServices tbody').html('<tr><td>No records match the search criteria.</td></tr>');
+				} // end if
+				
+			} // end method showTable	
+			
+		}); // end document ready function			
+	</script>
+</head>
+<body>
+	<h1>Directory of Commercial Visitor Service Providers</h1> 
+	<img id="parkImage" src="akr.jpg" >
+	<h2 class="fullParkName">Commercial Use Operators: </h2>
+	<p>View services and contact information for authorized CUA Holders in <strong><span class="fullParkName"></span></strong>.
+	<a href="default.htm">Choose a different park.</a></p>
+	<p>View by service type: 
+		<select id="serviceSelector">
+			<option value="all">All Services</option>
+		</select>
+	</p>
+	<span class="sType"></span>
+	<hr>
+	<table id="tblServices" cellspacing="10">
+		<tbody></tbody>
+	</table>
+</body>
+</html>
