@@ -86,28 +86,27 @@
 				var uniqueServices = []; // tracks which service names are added to prevent duplicate entries
 				var tableBody = $('#tblServices').find('tbody');  // cache the results of the jquery search
 				tableBody.empty(); // clear table
-				$.each(services, function(i, service){					
-					// get service attributes
-					var serviceName = ""; // service name	
-					if(service.website !== ""){
-							serviceName = '<a href="http://' + service.website +
-								'" target="_blank">' + service.name + '</a>'; // show service name with link to site
-					} else { 
-							serviceName = service.name; // no website, show service name only
-					}
-					var serviceLocation = service.city + ', ' + service.state; // service location (as city, state)
-					var servicePhone = service.phone; // UNFORMATTED phone number
-					var serviceFPhone = servicePhone.substr(0,3) + '-' + servicePhone.substr(3,3) +
-						'-' + servicePhone.substr(6,4); // FORMATTED phone number
-					var serviceEmail = service.email; // RAW email address (from database: email@site#mailto:email@site#)
-					var serviceFEmail = serviceEmail.substr(0,serviceEmail.indexOf('#')); // FORMATTED email address 
-					var serviceLEmail = '<a href="mailto:' + serviceFEmail + '">' + serviceFEmail + '</a>'; // email address WITH MAILTO link
-					
+				$.each(services, function(i, service){
 					// IF service code matches selected criteria OR if "All Services" is selected 
 					// AND the service isn't already listed, display service 
 					if((serviceTypeCode === service.code || serviceTypeCode === "all") &&
-					   $.inArray(serviceName, uniqueServices) === -1){								
-							uniqueServices.push(serviceName); // log name in array (to use for duplicate-checking)  	
+					   $.inArray(service.name, uniqueServices) === -1){
+							uniqueServices.push(service.name); // log name in array (to use for duplicate-checking)
+							// get service attributes
+							var serviceName = ""; // service name
+							if(service.website !== ""){
+								serviceName = '<a href="http://' + service.website +
+									'" target="_blank">' + service.name + '</a>'; // show service name with link to site
+							} else {
+								serviceName = service.name; // no website, show service name only
+							}
+							var serviceLocation = service.city + ', ' + service.state; // service location (as city, state)
+							var servicePhone = service.phone; // UNFORMATTED phone number
+							var serviceFPhone = servicePhone.substr(0,3) + '-' + servicePhone.substr(3,3) +
+								'-' + servicePhone.substr(6,4); // FORMATTED phone number
+							var serviceEmail = service.email; // RAW email address (from database: email@site#mailto:email@site#)
+							var serviceFEmail = serviceEmail.substr(0,serviceEmail.indexOf('#')); // FORMATTED email address
+							var serviceLEmail = '<a href="mailto:' + serviceFEmail + '">' + serviceFEmail + '</a>'; // email address WITH MAILTO link
 							// build table row for display
 							var serviceDetail = '<tr><td><strong>' + serviceName + '</strong><br/>Office Location: ' + 
 								serviceLocation + '<br/>Phone Number: ' + serviceFPhone + '<br/>' + 
