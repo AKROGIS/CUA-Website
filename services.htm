@@ -84,7 +84,7 @@
 			// display services in table on page	
 			function showTable(serviceTypeCode) {	
 				var uniqueServices = []; // tracks which service names are added to prevent duplicate entries
-				var tableBody = $('#tblServices').find('tbody');  // cache the results of the jquery search
+				var tableBody = $('#tblServices');  // cache the results of the jquery search
 				tableBody.empty(); // clear table
 				$.each(services, function(i, service){					
 					// get service attributes
@@ -109,17 +109,17 @@
 					   $.inArray(serviceName, uniqueServices) === -1){								
 							uniqueServices.push(serviceName); // log name in array (to use for duplicate-checking)  	
 							// build table row for display
-							var serviceDetail = '<tr><td><strong>' + serviceName + '</strong><br/>Office Location: ' + 
+							var serviceDetail = '<li><strong>' + serviceName + '</strong><br/>Office Location: ' +
 								serviceLocation + '<br/>Phone Number: ' + serviceFPhone + '<br/>' + 
-								serviceLEmail + '</td></tr>';
+								serviceLEmail + '</li>';
 							// append table row to page
-							$('#tblServices').find('tbody:last').append(serviceDetail);		
+							$('#tblServices').append(serviceDetail);
 					} 
 				});
 										
 				// if table is empty after looping through data (shouldn't happen...), display "no records match the search criteria"
 				if(tableBody.is(':empty')){
-					tableBody.html('<tr><td>No records match the search criteria.</td></tr>');
+					tableBody.html('<li>No records match the search criteria.</li>');
 				} // end if
 				
 			} // end method showTable	
@@ -141,8 +141,7 @@
 	</p>
 	<span class="sType"></span>
 	<hr>
-	<table id="tblServices" cellspacing="10">
-		<tbody></tbody>
-	</table>
+	<ul id="tblServices">
+	</ul>
 </body>
 </html>

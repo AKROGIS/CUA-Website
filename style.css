@@ -35,12 +35,18 @@ p {
 	color:#801416;
 	font-weight:bold;
 }
-td{
+ul {
+    list-style-type: none;
+    padding-left: 11px;
+    margin-top:0;
+}
+li{
 	color: #555;	
     font-weight: 400;
 	line-height: 1.7;	
     font-size: 14px;
 	padding-bottom:15px;
+    padding-top:11px;
 	text-align:left;
 	border-bottom: 1px dotted #959595;
 }
